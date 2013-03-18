@@ -1,0 +1,14 @@
+{
+  "name": "typefighter",
+  "subdomain": "typefighter",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "node-static": "*"
+  },
+  "version": "0.0.0-2",
+  "engines": {
+    "node": "0.8.x"
+  }
+}
