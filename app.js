@@ -1,13 +1,39 @@
 var http = require('http');
 var nodeStatic = require('node-static');
+var randomWord = require('./random-word-chooser');
 var fileServer = new nodeStatic.Server('./public');
 
-http.createServer(function (request, response) {
-	
-	request.on('end', function () {
-		fileServer.serve(request, response);
+
+var app = http.createServer(function (req, res) {
+
+	switch(req.url) {
+		case '/test?action=randomWord':
+			write(res, randomWord.get());
+			break;
+		case '/test?action=allWords':
+			write(res, randomWord.showAll());
+			break;
+		default:
+			req.on('end', function () {
+				fileServer.serve(req, res);
+			});
+
+			req.resume();
+			break;
+	}
+})
+
+function write(res, body) {
+	res.writeHead(200, {
+	  'Content-Length': body.length,
+	  'Content-Type': 'text/plain' 
 	});
+	res.write(body);
+	res.end();
+}
 
-	request.resume();
+var io = require('socket.io').listen(app);
 
-}).listen(8080);
+
+
+app.listen(8080);

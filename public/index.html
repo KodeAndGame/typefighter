@@ -1,9 +1,72 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>TypeFighter 2 Turbo</title>
+	<title>Super TypeFighter II Turbo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/main.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
-	<h1>TypeFighter 2 Turbo (Alpha)</h1>
-	A new challenger has entered - Start Typing!
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/tf-player.js"></script>
+
+	<script type="text/javascript">
+		var p1 = new Player();
+
+		$(document).ready(function() {
+			$("#current-word").keypress(function(e) {
+				if(e.keyCode === 13) {
+					var currentWord = $("#current-word").val();
+					if(currentWord && currentWord.length > 0) {
+						p1.addNewWord(currentWord)
+						$("#my-fightbox .content").html(p1.getLastWords(25, '<br/>'));
+						$("#current-word").val('');
+					}
+				}
+				
+			});
+		});
+	</script>
+
+	<div class="container">
+
+		<div class="row">
+			<div class="span12 text-center">
+				<h1>Super TypeFighter II Turbo</h1>
+				<h3>A new challenger has entered - Start Typing!</h3>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="span6">
+				<div id="my-fightbox" class="fightbox">
+					<span class="content"></span>
+				</div>
+			</div>
+			<div class="span6">
+				<div id="opp-fightbox" class="fightbox">
+					
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span6">
+				<input id="current-word" style="width:97%;" maxlength="30" type="text"/>
+			</div>
+			<div class="span6">
+				
+			</div>
+		</div>
+	</div>
+	<div>
+		<h3>Debug</h3>
+		<ul>
+			<li><a href='/test?action=allWords'>Show all words in dictionary</a>
+			<li><a href='/test?action=randomWord'>Get random word</a>
+		</ul>
+	</div>
 </body>
 </html>

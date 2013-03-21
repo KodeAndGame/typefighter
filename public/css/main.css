@@ -1,0 +1,9 @@
+div .fightbox {
+	border: 1px solid #eee;
+	height: 500px;
+	vertical-align: bottom;
+}
+
+div .fightbox p { 
+	float : left;
+}

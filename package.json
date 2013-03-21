@@ -5,9 +5,10 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "node-static": "*"
+    "node-static": "*",
+    "socket.io": "*"
   },
-  "version": "0.0.0-2",
+  "version": "0.0.0-7",
   "engines": {
     "node": "0.8.x"
   }
