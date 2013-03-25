@@ -1,6 +1,7 @@
 var http = require('http');
 var nodeStatic = require('node-static');
-var randomWord = require('./random-word-chooser');
+var randomWord = require('./lib/random-word-chooser');
+
 var fileServer = new nodeStatic.Server('./public');
 
 var app = http.createServer(function (req, res) {
@@ -40,7 +41,7 @@ function write(res, body) {
 }
 
 var io = require('socket.io').listen(app);
-
+io.set('log level', 1);
 
 io.sockets.on('connection', function(socket) {
 	socket.on('typed', function (data) {
