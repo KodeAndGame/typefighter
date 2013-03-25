@@ -5,8 +5,10 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "node-static": "*",
-    "socket.io": "*"
+    "node-static": "0.6.7",
+    "socket.io": "0.9.13",
+    "gm": "1.8.2",
+    "gm-buffer": "0.0.3"
   },
   "version": "0.0.0-8",
   "engines": {
