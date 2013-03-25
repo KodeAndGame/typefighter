@@ -3,7 +3,6 @@ var nodeStatic = require('node-static');
 var randomWord = require('./random-word-chooser');
 var fileServer = new nodeStatic.Server('./public');
 
-
 var app = http.createServer(function (req, res) {
 
 	switch(req.url) {
@@ -12,6 +11,14 @@ var app = http.createServer(function (req, res) {
 			break;
 		case '/test?action=allWords':
 			write(res, randomWord.showAll());
+			break;
+		case '/test?action=randomWordImage':
+			randomWord.getAsImage('./public/fonts/Aldrich/Aldrich-Regular.ttf', 16, function(err, buf) {
+				res.writeHead(200, {
+				  'Content-Type': 'image/png' 
+				});
+				res.end(buf, 'binary');
+			});
 			break;
 		default:
 			req.on('end', function () {
@@ -34,6 +41,12 @@ function write(res, body) {
 
 var io = require('socket.io').listen(app);
 
+
+io.sockets.on('connection', function(socket) {
+	socket.on('typed', function (data) {
+
+	})
+});
 
 
 app.listen(8080);
