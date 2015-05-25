@@ -5,7 +5,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.network "private_network", ip: "192.168.33.10"
 
-  config.vm.synced_folder "src/", "/srv/website"
+  config.vm.synced_folder "src/", "/srv/app"
 
   config.vm.provider "virtualbox" do |vb|  
      # Customize the amount of memory on the VM:
