@@ -24,17 +24,18 @@ Vagrant.configure(2) do |config|
   
   config.vm.provision "chef_zero" do |chef|
     # Specify the local paths where Chef data is stored
-    chef.cookbooks_path = ["chef/cookbooks/core", "chef/cookbooks/custom"]
+    chef.cookbooks_path = "chef/cookbooks"
     #chef.roles_path = "roles"
     #chef.nodes_path = "nodes"
 
     # Add a recipe
-    chef.add_recipe "nodejs"
+    chef.add_recipe "typefighter"
+    #chef.add_recipe "nodejs_test"
 
     # When Vagrant spins up a machine, it will also load your cookbook 
     # dependencies via Berkshelf
     config.berkshelf.enabled = true
-    config.berkshelf.berksfile_path = "chef/cookbooks/core/nodejs/Berksfile"
+    config.berkshelf.berksfile_path = "chef/cookbooks/typefighter/Berksfile"
 
 
     # Or maybe a role
