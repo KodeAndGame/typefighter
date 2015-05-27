@@ -9,4 +9,4 @@ This is a NodeJS based competitive typing game
 - Run 'vagrant up'
 - Run 'vagrant ssh'
 - Run 'node /srv/app/app.js'
-- Visit 192.168.33.10:8080
+- Visit 192.168.33.10:8080 in host machine
