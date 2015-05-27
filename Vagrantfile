@@ -1,3 +1,13 @@
+# Check required plugins
+REQUIRED_PLUGINS = %w(vagrant-berkshelf)
+exit unless REQUIRED_PLUGINS.all? do |plugin|
+  Vagrant.has_plugin?(plugin) || (
+    puts "The #{plugin} plugin is required. Please install it with:"
+    puts "$ vagrant plugin install #{plugin}"
+    false
+  )
+end
+
 Vagrant.configure(2) do |config|
   config.vm.box = "precise32"
 
