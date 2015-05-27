@@ -21,6 +21,12 @@ Vagrant.configure(2) do |config|
     # Add a recipe
     chef.add_recipe "nodejs"
 
+    # When Vagrant spins up a machine, it will also load your cookbook 
+    # dependencies via Berkshelf
+    config.berkshelf.enabled = true
+    config.berkshelf.berksfile_path = "chef/cookbooks/core/nodejs/Berksfile"
+
+
     # Or maybe a role
     #chef.add_role "web"
   end
