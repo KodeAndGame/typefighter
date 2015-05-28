@@ -41,7 +41,6 @@ function write(res, body) {
 }
 
 var io = require('socket.io').listen(app);
-io.set('log level', 1);
 
 io.sockets.on('connection', function(socket) {
 	socket.on('typed', function (data) {
