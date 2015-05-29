@@ -1,6 +1,6 @@
 name             'typefighter'
-maintainer       'YOUR_COMPANY_NAME'
-maintainer_email 'YOUR_EMAIL'
+maintainer       'Richard Alvarez'
+maintainer_email 'alvarez.richard@gmail.com'
 license          'All rights reserved'
 description      'Installs/Configures typefighter'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
