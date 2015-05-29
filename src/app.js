@@ -1,8 +1,20 @@
+/*
+var express = require('express');
+
+var app = express();
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+module.exports(app);
+*/
+
+
 var http = require('http');
+var path = require('path');
 var nodeStatic = require('node-static');
 var randomWord = require('./lib/random-word-chooser');
 
-var fileServer = new nodeStatic.Server('./public');
+var fileServer = new nodeStatic.Server(path.join(__dirname, 'public'));
 
 var app = http.createServer(function (req, res) {
 

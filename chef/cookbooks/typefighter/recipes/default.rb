@@ -6,6 +6,9 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+
+node.set['nodejs']['version'] = '0.12.4'
+
 include_recipe 'nodejs'
 include_recipe 'nodejs::npm'
 include_recipe 'typefighter::npm'

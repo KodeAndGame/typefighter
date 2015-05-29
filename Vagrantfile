@@ -1,5 +1,5 @@
 # Check required plugins
-REQUIRED_PLUGINS = %w(vagrant-berkshelf)
+REQUIRED_PLUGINS = %w(vagrant-berkshelf vagrant-triggers)
 exit unless REQUIRED_PLUGINS.all? do |plugin|
   Vagrant.has_plugin?(plugin) || (
     puts "The #{plugin} plugin is required. Please install it with:"
@@ -9,35 +9,36 @@ exit unless REQUIRED_PLUGINS.all? do |plugin|
 end
 
 Vagrant.configure(2) do |config|
+  # Workaround for synced_folder cache issue (https://github.com/mitchellh/vagrant/issues/5199)
+  config.trigger.before [:reload, :up, :provision], stdout: true do
+    SYNCED_FOLDER = ".vagrant/machines/default/virtualbox/synced_folders"
+    info "Trying to delete folder #{SYNCED_FOLDER}"
+    
+    begin
+      File.delete(SYNCED_FOLDER)
+    rescue Exception => ex
+      warn "Could not delete folder #{SYNCED_FOLDER}."
+      warn ex.message
+    end
+  end
+
   config.vm.box = "precise32"
-
   config.vm.network "forwarded_port", guest: 8080, host: 8080
-
   config.vm.network "private_network", ip: "192.168.33.10"
-
   config.vm.synced_folder "src/", "/srv/app"
 
   config.vm.provider "virtualbox" do |vb|  
-     # Customize the amount of memory on the VM:
      vb.memory = "1024"
   end
   
   config.vm.provision "chef_zero" do |chef|
-    # Specify the local paths where Chef data is stored
     chef.cookbooks_path = "chef/cookbooks"
-    #chef.roles_path = "roles"
-    #chef.nodes_path = "nodes"
-
-    # Add a recipe
     chef.add_recipe "typefighter"
-
-    # When Vagrant spins up a machine, it will also load your cookbook 
-    # dependencies via Berkshelf
     config.berkshelf.enabled = true
     config.berkshelf.berksfile_path = "chef/cookbooks/typefighter/Berksfile"
 
-
-    # Or maybe a role
+    #chef.roles_path = "roles"
     #chef.add_role "web"
+    #chef.nodes_path = "nodes"    
   end
 end
