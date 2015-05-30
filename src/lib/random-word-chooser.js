@@ -20,6 +20,10 @@ function randomWordChooser() {
 		return words[i];
 	}
 
+	self.getAt = function(i) {
+		return words[i];
+	}
+
 	self.getAsImage = function (fontPath, fontSize, callback) {	
 		var word = this.get();		
 		gm(imagePath)
