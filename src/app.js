@@ -1,8 +1,17 @@
+var wordChooser = require('./lib/random-word-chooser');
 var path = require('path');
 var express = require('express');
 var app = express();
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/randomWord', function(req, res) {
+	res.send(wordChooser.get());
+});
+
+app.get('/allWords', function(req, res) {
+	res.send(wordChooser.showAll());
+});
 
 var server = app.listen(80, function () {
 
