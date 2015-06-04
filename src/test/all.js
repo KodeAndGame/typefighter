@@ -1,4 +1,4 @@
-var wordChooser = require('../lib/random-word-chooser');
+var wordChooser = require('../lib/tf-dictionary');
 
 // using nodejs's build in asserts that throw on failure 
 var assert = require('assert')
