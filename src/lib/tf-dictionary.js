@@ -1,11 +1,11 @@
 var fs = require('fs');
 var split = require('split');
 
-var dictionaryPath = __dirname + '/nouns.txt';
+var dictionaryPath = __dirname + '/tf-dictionary/nouns.txt';
 
-module.exports = new randomWordChooser();
+module.exports = new tfDictionary();
 
-function randomWordChooser() {
+function tfDictionary() {
 	var self = this;
 	var words = undefined;
 
