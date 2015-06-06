@@ -1,11 +1,11 @@
 var fs = require('fs');
 var split = require('split');
 
-var dictionaryPath = __dirname + '/tf-dictionary/nouns.txt';
+var dictionaryPath = __dirname + '/words/nouns.txt';
 
-module.exports = new tfDictionary();
+module.exports = new words();
 
-function tfDictionary() {
+function words() {
 	var self = this;
 	var words = undefined;
 

@@ -1,5 +1,5 @@
 /// <reference path="../typings/node/node.d.ts"/>
-var tfDict = require('./lib/tf-dictionary');
+var words = require('./lib/words');
 var path = require('path');
 var express = require('express');
 var app = express();
@@ -7,11 +7,11 @@ var app = express();
 app.use(express.static(path.join( __dirname, 'public')));
 
 app.get('/randomWord', function(req, res) {
-	res.send(tfDict.get()); 
+	res.send(words.get()); 
 });
 
 app.get('/allWords', function(req, res) {
-	res.send(tfDict.showAll());
+	res.send(words.showAll());
 });
 
 var server = app.listen(8080, function () {
