@@ -8,11 +8,16 @@ var words = require('./lib/words'),
 
 
 //View Engine
-app.engine('handlebars', exphbs({
+app.engine('.hbs', exphbs({
 	defaultLayout : 'main',
 	extname: '.hbs'
 }));
 app.set('view engine', '.hbs');
+app.set('views', __dirname + '/views')
+
+app.get('/home', function (req, res) {
+	res.render('home.hbs');
+});
 
 //Static
 app.use(express.static(path.join( __dirname, 'public')));
