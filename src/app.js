@@ -15,7 +15,7 @@ app.engine('.hbs', exphbs({
 app.set('view engine', '.hbs');
 app.set('views', __dirname + '/views')
 
-app.get('/home', function (req, res) {
+app.get('/', function (req, res) {
 	res.render('home.hbs');
 });
 
