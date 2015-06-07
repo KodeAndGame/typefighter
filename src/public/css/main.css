@@ -24,11 +24,19 @@ body {
 }
 
 div .fightbox {
-	border: 1px solid #eee;
+	border: 1px solid #ee e;
 	height: 500px;
 	vertical-align: bottom;
 }
 
 div .fightbox p { 
 	float : left;
+}
+
+#currentword.error:focus{
+  background-color: #F9A1A1;
+}
+
+#currentword:focus {
+  background-color: #96E992
 }

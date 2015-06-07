@@ -1,3 +1,15 @@
+$(function() {
+	$("#currentword").keypress(function(e) {
+		//space and correct
+		//backspace
+			//correction
+			//still incorrect
+		//letter or punctuation
+			//still correct
+			//incorrect
+		});
+});
+
 function Player() {
 	this.words = new Array();
 }

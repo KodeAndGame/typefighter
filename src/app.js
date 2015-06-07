@@ -16,24 +16,11 @@ app.set('view engine', '.hbs');
 app.set('views', __dirname + '/views')
 
 app.get('/', function (req, res) {
-	res.render('home.hbs');
+	res.render('typetest.hbs', { passage : passage.get()});
 });
 
 //Static
 app.use(express.static(path.join( __dirname, 'public')));
-
-//Test "API" Calls
-app.get('/randomWord', function(req, res) {
-	res.send(words.get()); 
-});
-
-app.get('/allWords', function(req, res) {
-	res.send(words.showAll());
-});
-
-app.get('/passage', function (req, res) {
-	res.send(passage.get());
-});
 
 
 // Go
